@@ -1,0 +1,39 @@
+First name
+
+ID = first_name
+Name = first_name
+XPath = //input[@id='first_name']
+Class name = first_name
+CSS selector = input.first_name
+
+Last name
+
+ID = last_name
+Name = last_name
+XPath = //input[@id='last_name']
+Class name = last_name
+CSS selector = input.last_name
+
+Email
+
+ID = email
+Name = email
+XPath = //input[@id='email']
+Class name = email
+CSS selector = input.email
+
+Phone
+
+ID = phone
+Name = phone
+XPath = //input[@id='phone']
+Class name = phone
+CSS selector = input.phone
+
+Address
+
+ID = address
+Name = address
+XPath = //input[@id='address']
+Class name = address
+CSS selector = input.address
