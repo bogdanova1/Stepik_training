@@ -18,7 +18,7 @@ try:
     x2 = x2_element.text
     y = calc(x1,x2)
 
-    browser.find_element_by_tag_name("select").click()
+#    browser.find_element_by_tag_name("select").click()
     select = Select(browser.find_element_by_tag_name("select"))
     select.select_by_value(y)
 
