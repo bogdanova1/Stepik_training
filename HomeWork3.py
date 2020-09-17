@@ -17,7 +17,7 @@ def test_registration(email, password):
         browser.get(_locators.main_page_link)
 
         # Act
-        browser.find_element_by_id("login_link").click()
+        browser.find_element_by_id(_locators.login).click()
         browser.find_element_by_id("id_registration-email").send_keys(email)
         browser.find_element_by_id("id_registration-password1").send_keys(password)
         browser.find_element_by_id("id_registration-password2").send_keys(password)
@@ -27,7 +27,7 @@ def test_registration(email, password):
         message = browser.find_element_by_class_name("alertinner")
         assert "Спасибо за регистрацию!" in message.text, "No message about registration"
 
-        browser.find_element_by_id("logout_link").click()
+        browser.find_element_by_id(_locators.logout).click()
         assert browser.current_url == _locators.main_page_link, "No return to main page"
     except AssertionError:
         print("\033[93mTest failed")
@@ -57,7 +57,7 @@ def test_authorization(email, password):
         browser.get(_locators.main_page_link)
 
         # Act
-        browser.find_element_by_id("login_link").click()
+        browser.find_element_by_id(_locators.login).click()
         browser.find_element_by_id("id_login-username").send_keys(email)
         browser.find_element_by_id("id_login-password").send_keys(password)
         browser.find_element_by_css_selector("button[name = 'login_submit']").click()
@@ -65,7 +65,7 @@ def test_authorization(email, password):
         # Assert
         message = browser.find_element_by_class_name("alertinner")
         assert "Рады видеть вас снова" in message.text, "No message about authorization"
-        browser.find_element_by_id("logout_link").click()
+        browser.find_element_by_id(_locators.logout).click()
         assert browser.current_url == _locators.main_page_link, "No return to main page"
 
     finally:
@@ -80,7 +80,7 @@ def test_view_all_articles():
         browser.get(_locators.main_page_link)
 
         # Act
-        browser.find_element_by_link_text('Все товары').click()
+        browser.find_element_by_link_text(_locators.all_items).click()
 
         # Assert
         header = browser.find_elements_by_css_selector('.page-header h1')
@@ -112,7 +112,7 @@ def test_view_article():
         browser.get(_locators.main_page_link)
 
         # Act
-        browser.find_element_by_link_text('Все товары').click()
+        browser.find_element_by_link_text(_locators.all_items).click()
         article_link = WebDriverWait(browser, 5).until(
             EC.element_to_be_clickable((By.CSS_SELECTOR, "article a"))
         )
@@ -158,7 +158,6 @@ def test_search_article_by_part_name(part_name):
         title_text = browser.find_element_by_class_name('page-header').text
         assert part_name in title_text, \
             "Page title '%s' should contain search text '%s'" % (title_text, part_name)
-        #        articles = browser.find_elements_by_css_selector(".product_pod a[title]")
         articles = browser.find_elements_by_css_selector(".product_pod")
         for article in articles:
             assert part_name.upper() in article.find_element_by_css_selector("h3 a").text.upper(), \
